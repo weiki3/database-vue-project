@@ -22,6 +22,11 @@ const router = createRouter({
       path: '/detail/:vid(\\d+)',
       name: 'detail',
       component: () => import('../views/DetailView.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue')
     }
   ]
 })

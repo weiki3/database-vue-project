@@ -33,3 +33,15 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## 测试数据
+
+user:
+
+luo
+123456
+luo@163.com
+
+123456
+123456
+luo123@163.com
