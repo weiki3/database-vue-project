@@ -33,7 +33,7 @@ const changePassword() {
 <template>
     <div>
         <!-- state 通过 store 直接访问 -->
-
+        
         <template v-if="userStore.loginState">
 
             <h2>{{ userStore.hello }}</h2>
@@ -41,8 +41,14 @@ const changePassword() {
             <n-button text-color="white" @click="onLogout">Exit</n-button>
         </template>
         <template v-else>
-            <n-card title="Login">
-
+                <n-tabs
+                default-value="signin"
+                size="large"
+                animated
+                pane-wrapper-style="margin: 0 -4px"
+                pane-style="padding-left: 4px; padding-right: 4px; box-sizing: border-box;"
+                >
+                    <n-tab-pane name="signin" tab="Login">
                 <n-form>
                     <n-form-item-row label="User ID: ">
                         <input v-model="userData.UserID" />
@@ -52,11 +58,17 @@ const changePassword() {
                     </n-form-item-row>
                 </n-form>
                 <n-button @click="onLogin">Login</n-button>
-
-            </n-card>
+            </n-tab-pane>
+            </n-tabs>
         </template>
 
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.n-card{
+    margin-right: auto;
+    margin-top: 10%;
+    margin-left: auto;
+}
+</style>
