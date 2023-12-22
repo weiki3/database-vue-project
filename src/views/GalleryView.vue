@@ -32,7 +32,7 @@ axios.get("http://localhost:8080")
 </script>
     
 <template>
-  <div>
+  <div class="photowall" style="position:relative;">
     <h1>Photo Gallery</h1>
       <div v-for="vehicle in vehicleList" :key="vehicle.id" class="photo-item" @click="handleDetails(vehicle)">
       <n-card :title="vehicle.name"  >
@@ -48,6 +48,14 @@ axios.get("http://localhost:8080")
 <style scoped>
 .n-card {
   max-width: 300px;
+}
+
+.photowall{
+  width: 100%;
+  font-size: 12px;
+  text-align: left;
+  margin-right: 60rem;
+  margin-top: 2rem;
 }
 
 .photo-item {

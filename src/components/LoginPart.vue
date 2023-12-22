@@ -1,6 +1,7 @@
 <script setup>
 import { reactive } from 'vue'
 import useUserStore from "../stores/user"
+import { NButton,NCard,NTabs,NTabPane,NForm,NFormItemRow} from 'naive-ui';
 
 const userData = reactive({
     UserID: '',
@@ -28,20 +29,32 @@ const onLogout = () => {
 <template>
     <div>
         <!-- state：通过 store 直接访问 -->
-        <h3>登录用户</h3>
+        
         <template v-if="userStore.loginState">
+            
             <h2>{{ userStore.hello }}</h2>
             <p>用户 ID：{{ userStore.UserID }}</p>
-            <!--<p>用户 email：{{ userStore.email }}</p>--->
-            <br />
-            <button @click="onLogout">退 出</button>
+            <n-button text-color="white" @click="onLogout">退 出</n-button>
         </template>
         <template v-else>
-            用户 ID：<input v-model="userData.UserID" />
-            <br />
-            密码：<input v-model="userData.password" type="password" />
-            <br />
-            <button @click="onLogin">登 录</button>
+            <n-card title="登录">
+        
+            <n-form>
+                <n-form-item-row label="用户 ID：">
+            <input v-model="userData.UserID" />
+        </n-form-item-row>
+            <n-form-item-row label="密码：">
+            <input v-model="userData.password" type="password" />
+        </n-form-item-row>
+        </n-form>
+            <n-button @click="onLogin">登 录</n-button>
+    
+    </n-card>
         </template>
+   
     </div>
 </template>
+
+<style scoped>
+
+</style>

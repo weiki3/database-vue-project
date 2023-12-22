@@ -1,20 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { NButton } from 'naive-ui';
 </script>
 
 <template>
-  <header>
-
-    <div class="wrapper">
-
+  
       <nav>
-        <RouterLink to="/">Home</RouterLink> |
-        <RouterLink to="/gallery">Gallery</RouterLink> |
-        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/"><n-button text-color="white">Home</n-button></RouterLink> |
+        <RouterLink to="/gallery"><n-button text-color="white">Gallery</n-button></RouterLink> |
+        <RouterLink to="/login"><n-button text-color="white">Login</n-button></RouterLink>
       </nav>
-    </div>
-  </header>
 
   <RouterView />
 </template>
@@ -26,7 +21,7 @@ header {
 }
 
 nav {
-  width: 100%;
+  width: 50%;
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
@@ -43,11 +38,11 @@ nav a.router-link-exact-active:hover {
 nav a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  /* border-left: 1px solid var(--color-border); */
 }
 
 nav a:first-of-type {
-  border: 0;
+  border: 60;
 }
 
 @media (min-width: 1024px) {
@@ -72,8 +67,8 @@ nav a:first-of-type {
     margin-left: -1rem;
     font-size: 1rem;
 
-    padding: 1rem 0;
-    margin-top: 1rem;
+    padding: 0rem 0;
+    margin-top: 0rem;
   }
 }
 </style>
