@@ -5,28 +5,21 @@ import { ref } from 'vue';
 import axios from 'axios';
 
 const details = ref(null);
-const comments = ref([]);
-const photoWall = ref([]);
+
 const router = useRouter()
 const route = useRoute()
 
 const selectedVehicle = JSON.parse(route.query.vehicleString)
 
-axios.get(`http://localhost:8080/${route.params.vid}`)
+axios.get(`https://localhost:8080/${route.params.vid}`)
     .then(result => {
         details.value = result.data.data
     })
     .catch(err => {
         console.log(err)
     })
-axios.get(`http://localhost:8080/${route.params.vid}/commentpage`)
-    .then(result => {
-        comments.value = result.data.data
-    })
-    .catch(err => {
-        console.log(err)
-    })
-axios.get(`http://localhost:8080/${route.params.vid}/photowall`)
+
+axios.get(`https://localhost:8080/${route.params.vid}/photowall`)
     .then(result => {
         photoWall.value = result.data.data
     })

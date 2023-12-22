@@ -6,7 +6,9 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:8080'
+// 配置 axios baseurl 和 credentials
+axios.defaults.baseURL = 'https://localhost:8080'
+axios.defaults.withCredentials = true
 
 const app = createApp(App)
 app.use(pinia)

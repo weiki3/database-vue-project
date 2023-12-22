@@ -33,7 +33,7 @@ const useUserStore = defineStore('user', {
             }
             const result = await axios.get(`/users/login?UserID=${userData.UserID}&password=${userData.password}`)
             const { data, state } = result.data
-            console.log(data)
+            console.log(result)
             if (state === 200) {
                 // action 中修改状态
                 this.loginState = true

@@ -13,7 +13,7 @@ const myComment = reactive({
 const userStore = useUserStore()
 
 function getComments() {
-    axios.get(`http://localhost:8080/${props.vid}/commentpage`)
+    axios.get(`https://localhost:8080/${props.vid}/commentpage`)
         .then(response => {
             comments.value = response.data.data
         })
@@ -38,7 +38,7 @@ function pushComment() {
         flushMyComment()
         return
     }
-    axios.post(`http://localhost:8080/comment/${props.vid}`, {
+    axios.postForm(`https://localhost:8080/comment/${props.vid}`, {
         vehicleID: props.vid,
         content: myComment.content,
         userID: userStore.UserID,

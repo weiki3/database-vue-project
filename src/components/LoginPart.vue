@@ -26,6 +26,10 @@ const onLogout = () => {
 }
 </script>
 
+const changePassword() {
+
+}
+
 <template>
     <div>
         <!-- state 通过 store 直接访问 -->
@@ -51,6 +55,7 @@ const onLogout = () => {
 
             </n-card>
         </template>
+        <a @click="goLogin = !goLogin">登录用户</a>
 
     </div>
 </template>

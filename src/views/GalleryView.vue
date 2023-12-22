@@ -2,7 +2,7 @@
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from 'vue';
 import axios from 'axios';
-import {NCard} from 'naive-ui';
+import { NCard } from 'naive-ui';
 
 const vehicleList = ref([]);
 const router = useRouter()
@@ -21,7 +21,7 @@ function handleDetails(vehicle) {
   )
 }
 
-axios.get("http://localhost:8080")
+axios.get("https://localhost:8080")
   .then(result => {
     vehicleList.value = result.data.data
   })
@@ -34,13 +34,13 @@ axios.get("http://localhost:8080")
 <template>
   <div class="photowall" style="position:relative;">
     <h1>Photo Gallery</h1>
-      <div v-for="vehicle in vehicleList" :key="vehicle.id" class="photo-item" @click="handleDetails(vehicle)">
-      <n-card :title="vehicle.name"  >
-      <template #cover>
-        <img :src="vehicle.picture" :alt="vehicle.name" class="thumbnail"  />
-      </template>
-      {{vehicle.nation}}
-    </n-card>
+    <div v-for="vehicle in vehicleList" :key="vehicle.id" class="photo-item" @click="handleDetails(vehicle)">
+      <n-card :title="vehicle.name">
+        <template #cover>
+          <img :src="vehicle.picture" :alt="vehicle.name" class="thumbnail" />
+        </template>
+        {{ vehicle.nation }}
+      </n-card>
     </div>
   </div>
 </template>
@@ -50,7 +50,7 @@ axios.get("http://localhost:8080")
   max-width: 300px;
 }
 
-.photowall{
+.photowall {
   width: 100%;
   font-size: 12px;
   text-align: left;
