@@ -1,16 +1,77 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { NButton } from 'naive-ui';
+import {h, ref} from "vue";
+import { NIcon,NMenu,NSplit } from "naive-ui";
+import {
+  BookOutline as BookIcon,
+  HomeOutline as HomeIcon
+} from "@vicons/ionicons5";
+
+
+function renderIcon (icon) {
+  return () => h(NIcon, null, { default: () => h(icon) })
+}
+
+const menuOptions = ref([
+  {
+    label: () => h(
+      RouterLink,
+      {
+        to: {
+          name: "home",
+        }
+      },  
+      { default: () => "Home" }
+    ),
+    key: "go-back-home",
+    icon: renderIcon(HomeIcon)
+  },
+  {
+    label: () => h(
+      RouterLink,
+      {
+        to: {
+          name: "gallery",
+        }
+      },
+      { default: () => "Gallery" }
+    ),
+    key: "go-to-gallery",
+    icon: renderIcon(BookIcon)
+  },
+  {
+    label: () => h(
+      RouterLink,
+      {
+        to: {
+          name: "login",
+        }
+      },
+      { default: () => "Login" }
+    ),
+    key: "go-to-Login",
+    icon: renderIcon(BookIcon)
+  },
+])
+
+const activeKey = ref(null)
+
+
 </script>
 
 <template>
-  
-      <nav>
-        <RouterLink to="/"><n-button text-color="white">Home</n-button></RouterLink> |
-        <RouterLink to="/gallery"><n-button text-color="white">Gallery</n-button></RouterLink> |
-        <RouterLink to="/login"><n-button text-color="white">Login</n-button></RouterLink>
-      </nav>
-
+      <n-split :default-size="5">
+    <template #1>
+      <n-menu
+        v-model:value="activeKey"
+        mode="horizontal"
+        :options="menuOptions"
+        responsive
+        icon-size="50"
+      />
+    </template>
+  </n-split>
   <RouterView />
 </template>
 
