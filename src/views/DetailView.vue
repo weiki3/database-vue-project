@@ -11,7 +11,7 @@ const route = useRoute()
 
 const selectedVehicle = JSON.parse(route.query.vehicleString)
 
-axios.get(`https://localhost:8080/${route.params.vid}`)
+axios.get(`/${route.params.vid}`)
     .then(result => {
         details.value = result.data.data
     })
@@ -19,7 +19,7 @@ axios.get(`https://localhost:8080/${route.params.vid}`)
         console.log(err)
     })
 
-axios.get(`https://localhost:8080/${route.params.vid}/photowall`)
+axios.get(`/${route.params.vid}/photowall`)
     .then(result => {
         photoWall.value = result.data.data
     })

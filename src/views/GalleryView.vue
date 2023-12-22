@@ -21,7 +21,7 @@ function handleDetails(vehicle) {
   )
 }
 
-axios.get("https://localhost:8080")
+axios.get("/")
   .then(result => {
     vehicleList.value = result.data.data
   })

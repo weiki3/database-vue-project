@@ -13,7 +13,7 @@ const myComment = reactive({
 const userStore = useUserStore()
 
 function getComments() {
-    axios.get(`https://localhost:8080/${props.vid}/commentpage`)
+    axios.get(`/${props.vid}/commentpage`)
         .then(response => {
             comments.value = response.data.data
         })
@@ -38,19 +38,20 @@ function pushComment() {
         flushMyComment()
         return
     }
-    axios.postForm(`https://localhost:8080/comment/${props.vid}`, {
+    axios.postForm(`/comment/${props.vid}`, {
         vehicleID: props.vid,
         content: myComment.content,
         userID: userStore.UserID,
         point: myComment.point
     })
         .then(response => {
-            console.log(response)
-            myComment.content = ''
+            flushMyComment()
         })
         .catch(error => {
             console.log(error)
+            alert("Failed to summit comment!")
         })
+    getComments()
 }
 
 getComments()
@@ -61,11 +62,11 @@ getComments()
     <div>
         <div class="display">
             <ul>
-                <li v-for="(comment, index) in comments" :key="index">
+                <div v-for="(comment, index) in comments" :key="comment.userID">
                     <p>User ID: {{ comment.userID }}</p>
                     <p>Point: {{ comment.point }}</p>
                     <p>Comment: {{ comment.content }}</p>
-                </li>
+                </div>
             </ul>
         </div>
 

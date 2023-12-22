@@ -33,7 +33,7 @@ const useUserStore = defineStore('user', {
             }
             const result = await axios.get(`/users/login?UserID=${userData.UserID}&password=${userData.password}`)
             const { data, state } = result.data
-            console.log(result)
+            // console.log(result)
             if (state === 200) {
                 // action 中修改状态
                 this.loginState = true
@@ -45,6 +45,22 @@ const useUserStore = defineStore('user', {
             else {
                 alert("User ID or password is wrong!")
             }
+        },
+        async keepLogin() {
+            if (this.loginState) {
+                axios.get(`/users/login?UserID=${this.UserID}&password=${this.password}`)
+                    .then(response => {
+                        let { state } = result.data
+                        if (state !== 200) {
+                            this.loginState = false
+                            alert("Login expired, please login again!")
+                        }
+                    }).catch(error => {
+                        this.logout()
+                        alert("Login expired, please login again!")
+                    })
+            }
+
         },
 
         // 同步 action

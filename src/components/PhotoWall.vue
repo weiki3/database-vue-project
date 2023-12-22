@@ -6,7 +6,7 @@ const props = defineProps(['vid'])
 const photoWall = ref([]);
 
 function getPhotoWall() {
-    axios.get(`https://localhost:8080/${route.params.vid}/photowall`)
+    axios.get(`/${route.params.vid}/photowall`)
         .then(result => {
             photoWall.value = result.data.data
         })

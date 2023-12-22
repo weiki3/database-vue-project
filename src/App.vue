@@ -1,15 +1,24 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { NButton } from 'naive-ui';
-import {h, ref} from "vue";
-import { NIcon,NMenu,NSplit } from "naive-ui";
+import { h, ref } from "vue";
+import { NIcon, NMenu, NSplit } from "naive-ui";
 import {
   BookOutline as BookIcon,
   HomeOutline as HomeIcon
 } from "@vicons/ionicons5";
 
+import useUserStore from "./stores/user"
 
-function renderIcon (icon) {
+// 刷新保证登录状态
+const userStore = useUserStore()
+
+if (userStore.loginState) {
+  userStore.keepLogin()
+}
+
+
+function renderIcon(icon) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
 
@@ -21,7 +30,7 @@ const menuOptions = ref([
         to: {
           name: "home",
         }
-      },  
+      },
       { default: () => "Home" }
     ),
     key: "go-back-home",
@@ -61,15 +70,9 @@ const activeKey = ref(null)
 </script>
 
 <template>
-      <n-split :default-size="5">
+  <n-split :default-size="5">
     <template #1>
-      <n-menu
-        v-model:value="activeKey"
-        mode="horizontal"
-        :options="menuOptions"
-        responsive
-        icon-size="50"
-      />
+      <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" responsive icon-size="50" />
     </template>
   </n-split>
   <RouterView />
