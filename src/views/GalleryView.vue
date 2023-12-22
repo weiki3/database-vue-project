@@ -2,6 +2,7 @@
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from 'vue';
 import axios from 'axios';
+import {NCard} from 'naive-ui';
 
 const vehicleList = ref([]);
 const router = useRouter()
@@ -33,13 +34,22 @@ axios.get("http://localhost:8080")
 <template>
   <div>
     <h1>Photo Gallery</h1>
-    <div v-for="vehicle in vehicleList" :key="vehicle.id" class="photo-item">
-      <img :src="vehicle.picture" :alt="vehicle.name" class="thumbnail" @click="handleDetails(vehicle)" />
+      <div v-for="vehicle in vehicleList" :key="vehicle.id" class="photo-item" @click="handleDetails(vehicle)">
+      <n-card :title="vehicle.name"  >
+      <template #cover>
+        <img :src="vehicle.picture" :alt="vehicle.name" class="thumbnail"  />
+      </template>
+      {{vehicle.nation}}
+    </n-card>
     </div>
   </div>
 </template>
 
 <style scoped>
+.n-card {
+  max-width: 300px;
+}
+
 .photo-item {
   cursor: pointer;
   margin: 10px;
