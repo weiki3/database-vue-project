@@ -1,8 +1,8 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { NButton } from 'naive-ui';
-import { h, ref } from "vue";
-import { NIcon, NMenu, NSplit } from "naive-ui";
+import {h, ref} from "vue";
+import { NIcon,NMenu,NSplit,NConfigProvider,darkTheme } from "naive-ui";
 import {
   BookOutline as BookIcon,
   HomeOutline as HomeIcon
@@ -70,11 +70,21 @@ const activeKey = ref(null)
 </script>
 
 <template>
-  <n-split :default-size="5">
+  <n-config-provider :theme="darkTheme">
+  
+      <n-split :default-size="5">
     <template #1>
-      <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" responsive icon-size="50" />
+      <n-menu
+        v-model:value="activeKey"
+        mode="horizontal"
+        :options="menuOptions"
+        responsive
+        icon-size=50
+        
+      />
     </template>
   </n-split>
+</n-config-provider>
   <RouterView />
 </template>
 
