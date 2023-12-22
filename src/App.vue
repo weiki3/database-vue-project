@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { NButton } from 'naive-ui';
 import {h, ref} from "vue";
-import { NIcon,NMenu,NSplit,NConfigProvider,darkTheme } from "naive-ui";
+import { NIcon,NMenu,NSplit,NConfigProvider,darkTheme,NLayoutHeader } from "naive-ui";
 import {
   BookOutline as BookIcon,
   HomeOutline as HomeIcon
@@ -71,7 +71,7 @@ const activeKey = ref(null)
 
 <template>
   <n-config-provider :theme="darkTheme">
-  
+  <n-layout-header>
       <n-split :default-size="5">
     <template #1>
       <n-menu
@@ -80,13 +80,15 @@ const activeKey = ref(null)
         :options="menuOptions"
         responsive
         icon-size=50
-        
       />
     </template>
   </n-split>
-</n-config-provider>
+  </n-layout-header>
+
   <RouterView />
+</n-config-provider>
 </template>
+
 
 <style scoped>
 header {
@@ -118,6 +120,7 @@ nav a {
 nav a:first-of-type {
   border: 60;
 }
+
 
 @media (min-width: 1024px) {
   header {
