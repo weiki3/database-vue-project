@@ -4,7 +4,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 
 const details = ref(null);
-const comment = ref([]);
+const comments = ref([]);
 const photoWall = ref([]);
 const router = useRouter()
 const route = useRoute()
@@ -20,7 +20,7 @@ axios.get(`http://localhost:8080/${route.params.vid}`)
     })
 axios.get(`http://localhost:8080/${route.params.vid}/commentpage`)
     .then(result => {
-        comment.value = result.data.data
+        comments.value = result.data.data
     })
     .catch(err => {
         console.log(err)
@@ -47,6 +47,19 @@ axios.get(`http://localhost:8080/${route.params.vid}/photowall`)
                     {{ key }}:{{ value }}
                 </li>
             </ul>
+            <h2>Comments</h2>
+            <ul>
+                <li v-for="comment in comments" :key="comment.id">
+                    {{ comment }}
+                </li>
+            </ul>
+            <h2>Photo Wall</h2>
+            <ul>
+                <li v-for="photo in photoWall" :key="photo.id">
+                    {{ photo }}
+                </li>
+            </ul>
         </div>
+
     </div>
 </template>

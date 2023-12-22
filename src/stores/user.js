@@ -6,10 +6,11 @@ const useUserStore = defineStore('user', {
     persist: {
         key: "UserID",
         storage: sessionStorage,
-        paths: ["password"]
+        paths: ["password", "loginState", "user_name", "email"],
     },
     // 定义状态：一个函数，返回一个对象
     state: () => ({
+        loginState: false,
         UserID: '',
         password: '',
         user_name: '',
@@ -26,21 +27,29 @@ const useUserStore = defineStore('user', {
     actions: {
         // 异步 action，一般用来处理异步逻辑
         async login(userData) {
+            if (userData.UserID === '' || userData.password === '') {
+                alert("用户 ID 与 密码不能为空")
+                return
+            }
             const result = await axios.get(`/users/login?UserID=${userData.UserID}&password=${userData.password}`)
             const { data, state } = result.data
-            console.log(result)
+            console.log(data)
             if (state === 200) {
                 // action 中修改状态
-                this.UserID = userData.UserID;
-                this.password = userData.password;
-                this.user_name = data.user_name;
-                this.email = data.email;
+                this.loginState = true
+                this.UserID = userData.UserID
+                this.password = userData.password
+                this.user_name = data.user_name
+                this.email = data.email_address
             }
-            console.log(this)
+            else {
+                alert("用户 ID 或密码错误！")
+            }
         },
 
         // 同步 action
         logout() {
+            this.loginState = false
             this.password = ''
             this.UserID = ''
             this.user_name = ''
