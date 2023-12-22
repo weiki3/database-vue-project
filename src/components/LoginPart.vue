@@ -55,7 +55,6 @@ const changePassword() {
 
             </n-card>
         </template>
-        <a @click="goLogin = !goLogin">登录用户</a>
 
     </div>
 </template>

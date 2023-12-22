@@ -5,9 +5,6 @@ import { ref } from 'vue';
 
 const goLogin = ref(true); // 必须用响应式对象
 
-function change() {
-    goLogin = !goLogin
-}
 </script>
 
 <template>
