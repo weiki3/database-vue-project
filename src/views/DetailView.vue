@@ -1,4 +1,5 @@
 <script setup>
+import CommentPart from '@/components/CommentPart.vue';
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from 'vue';
 import axios from 'axios';
@@ -48,11 +49,7 @@ axios.get(`http://localhost:8080/${route.params.vid}/photowall`)
                 </li>
             </ul>
             <h2>Comments</h2>
-            <ul>
-                <li v-for="comment in comments" :key="comment.id">
-                    {{ comment }}
-                </li>
-            </ul>
+            <CommentPart :vid="selectedVehicle.id" />
             <h2>Photo Wall</h2>
             <ul>
                 <li v-for="photo in photoWall" :key="photo.id">

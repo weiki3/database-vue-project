@@ -11,7 +11,7 @@ const registerData = reactive({
 
 const onRegister = async () => {
     if (registerData.user_name === '' || registerData.password === '' || registerData.email === '') {
-        alert("用户名、密码、邮箱不能为空")
+        alert("Username, email and password cannot be empty!")
         return
     }
 
@@ -27,7 +27,7 @@ const onRegister = async () => {
             if (response.data.data) {
                 registerData.userid = response.data.data
             }
-            else { alert("邮箱重复，注册失败！") }
+            else { alert("Duplicated email, failed to register!") }
         })
         .catch(function (error) {
             console.log(error);
@@ -38,19 +38,19 @@ const onRegister = async () => {
 
 <template>
     <div>
-        <h3>注册用户</h3>
-        用户名：<input v-model="registerData.user_name" />
+        <h3>Register</h3>
+        Username: <input v-model="registerData.user_name" />
         <br />
-        邮箱：<input v-model="registerData.email" />
+        Email: <input v-model="registerData.email" />
         <br />
-        密码：<input v-model="registerData.password" type="password" />
+        Password: <input v-model="registerData.password" type="password" />
         <br />
-        <button @click="onRegister">注册</button>
+        <button @click="onRegister">Register</button>
 
         <div v-if="registerData.userid">
-            <h4>注册成功</h4>
-            <h4>用户 ID：{{ registerData.userid }}</h4>
-            <h4 class="emphasized">用户 ID 是登录的凭证之一，请牢记！</h4>
+            <h4>Register success!</h4>
+            <h4>User ID: {{ registerData.userid }}</h4>
+            <h4 class="emphasized">User ID is one of the login certificate, please remember!</h4>
         </div>
     </div>
 </template>

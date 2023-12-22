@@ -28,7 +28,7 @@ const useUserStore = defineStore('user', {
         // 异步 action，一般用来处理异步逻辑
         async login(userData) {
             if (userData.UserID === '' || userData.password === '') {
-                alert("用户 ID 与 密码不能为空")
+                alert("User ID and password cannot be empty!")
                 return
             }
             const result = await axios.get(`/users/login?UserID=${userData.UserID}&password=${userData.password}`)
@@ -43,7 +43,7 @@ const useUserStore = defineStore('user', {
                 this.email = data.email_address
             }
             else {
-                alert("用户 ID 或密码错误！")
+                alert("User ID or password is wrong!")
             }
         },
 
