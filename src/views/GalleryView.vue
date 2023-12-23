@@ -35,7 +35,8 @@ onMounted(() => {
     <h1 class="title">Photo Gallery</h1>
     <n-space justify="space-around">
       <div v-for="vehicle in vehicleList" :key="vehicle.id" class="photo-item" @click="handleDetails(vehicle.id)">
-        <n-card :title="vehicle.name" style="border-radius: 10px;">
+        <!--图片缺失的不展示--->
+        <n-card v-if="vehicle.picture !== '0'" :title="vehicle.name" style="border-radius: 10px;">
           <template #cover>
             <img :src="vehicle.picture" :alt="vehicle.name" class="thumbnail" />
           </template>
@@ -49,7 +50,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
 .photowall {
   width: 100%;
   font-size: 12px;
