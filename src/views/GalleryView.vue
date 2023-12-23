@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { NCard, NSpace } from 'naive-ui';
 
@@ -8,26 +8,25 @@ const vehicleList = ref([]);
 const router = useRouter()
 
 
-function handleDetails(vehicle) {
-  let vehicleString = JSON.stringify(vehicle)
+function handleDetails(vehicleId) {
   router.push(
     {
       name: 'detail',
       params: {
-        vid: vehicle.id
-      },
-      query: { vehicleString }
+        vid: vehicleId
+      }
     }
   )
 }
-
-axios.get("/")
-  .then(result => {
-    vehicleList.value = result.data.data
-  })
-  .catch(err => {
-    console.log(err)
-  })
+onMounted(() => {
+  axios.get("/")
+    .then(result => {
+      vehicleList.value = result.data.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
 
 </script>
     
@@ -35,7 +34,7 @@ axios.get("/")
   <div class="photowall" style="position:relative;">
     <h1 class="title">Photo Gallery</h1>
     <n-space justify="space-around">
-      <div v-for="vehicle in vehicleList" :key="vehicle.id" class="photo-item" @click="handleDetails(vehicle)">
+      <div v-for="vehicle in vehicleList" :key="vehicle.id" class="photo-item" @click="handleDetails(vehicle.id)">
         <n-card :title="vehicle.name">
           <template #cover>
             <img :src="vehicle.picture" :alt="vehicle.name" class="thumbnail" />

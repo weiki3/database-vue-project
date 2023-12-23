@@ -1,8 +1,8 @@
 <script setup>
 import CommentPart from '@/components/CommentPart.vue';
 import PhotoWall from '@/components/PhotoWall.vue';
-import { useRouter, useRoute } from 'vue-router';
-import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import {
     NGrid, NGridItem, NDescriptions,
@@ -10,53 +10,55 @@ import {
 } from 'naive-ui';
 
 const details = ref(null);
-const photoWall = ref([])
-const router = useRouter()
 const route = useRoute()
 
-const selectedVehicle = JSON.parse(route.query.vehicleString)
+onMounted(() => {
+    console.log(route.params.vid)
 
-axios.get(`/${route.params.vid}`)
-    .then(result => {
-        details.value = result.data.data
-    })
-    .catch(err => {
-        console.log(err)
-    })
+    axios.get(`/${route.params.vid}`)
+        .then(result => {
+            details.value = result.data.data
+            console.log(details.value)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
 
 </script>
 
 <template>
-    <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" /> -->
-    <n-breadcrumb>
-        <n-breadcrumb-item>
-            gallery</n-breadcrumb-item>
-        <n-breadcrumb-item>
-            {{ selectedVehicle.name }}</n-breadcrumb-item>
+    <div v-if="details">
+        <n-breadcrumb>
+            <n-breadcrumb-item>
+                gallery</n-breadcrumb-item>
+            <n-breadcrumb-item>
+                {{ details.name }}</n-breadcrumb-item>
 
-    </n-breadcrumb>
-    <n-grid cols="4" item-responsive>
-        <n-grid-item span="0 400:1 600:2 800:3">
-            <ul>
-                <n-image width="100%" :src="selectedVehicle.picture" :alt="selectedVehicle.name" />
-                <n-descriptions title="Details" :column="3">
-                    <n-descriptions-item v-for="(value, key) in details"
-                        :label="key != 'picture' && key != 'id' ? key : null">
-                        <li v-if="key != 'picture' && key != 'id'">
-                            {{ value }}
-                        </li>
-                    </n-descriptions-item>
-                </n-descriptions>
-            </ul>
+        </n-breadcrumb>
+        <n-grid cols="4" item-responsive>
+            <n-grid-item span="0 400:1 600:2 800:3">
+                <ul>
+                    <n-image width="100%" :src="details.picture" :alt="details.name" />
+                    <n-descriptions title="Details" :column="3">
+                        <n-descriptions-item v-for="(value, key) in details"
+                            :label="key != 'picture' && key != 'id' ? key : null">
+                            <li v-if="key != 'picture' && key != 'id'">
+                                {{ value }}
+                            </li>
+                        </n-descriptions-item>
+                    </n-descriptions>
+                </ul>
 
-        </n-grid-item>
-        <n-grid-item>
-            <CommentPart :vid="selectedVehicle.id" />
-        </n-grid-item>
-        <n-grid-item>
-            <PhotoWall :vid="selectedVehicle.id" />
-        </n-grid-item>
-    </n-grid>
+            </n-grid-item>
+            <n-grid-item>
+                <CommentPart :vid="details.id" />
+            </n-grid-item>
+            <n-grid-item>
+                <PhotoWall :vid="details.id" />
+            </n-grid-item>
+        </n-grid>
+    </div>
 </template>
 
 <style scoped>
@@ -69,3 +71,5 @@ axios.get(`/${route.params.vid}`)
     place-self: "start";
 }
 </style>
+
+出现问题，details在 template调用之前还未获取到，如何使details和模板同步

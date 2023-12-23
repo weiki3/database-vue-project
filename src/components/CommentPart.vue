@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import useUserStore from "../stores/user"
 import axios from 'axios';
 import { NList, NListItem, NRate, NTag } from 'naive-ui';
@@ -52,10 +52,12 @@ function pushComment() {
             console.log(error)
             alert("Failed to summit comment!")
         })
-    getComments()
+    location.reload()
 }
 
-getComments()
+onMounted(() => {
+    getComments()
+})
 
 </script>
 
