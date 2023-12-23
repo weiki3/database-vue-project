@@ -36,7 +36,7 @@ axios.get("/")
     <h1 class="title">Photo Gallery</h1>
     <n-space justify="space-around">
       <div v-for="vehicle in vehicleList" :key="vehicle.id" class="photo-item" @click="handleDetails(vehicle)">
-        <n-card :title="vehicle.name">
+        <n-card :title="vehicle.name" style="border-radius: 10px;">
           <template #cover>
             <img :src="vehicle.picture" :alt="vehicle.name" class="thumbnail" />
           </template>
