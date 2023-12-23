@@ -38,7 +38,7 @@ onMounted(() => {
         <n-grid cols="4" item-responsive>
             <n-grid-item span="0 400:1 600:2 800:3">
                 <ul style="padding-left: 5rem;padding-right: 5rem;">
-                    <n-image width="100%" :src="details.picture" :alt="details.name" />
+                    <n-image width="85%" :src="details.picture" :alt="details.name" />
                     <n-descriptions title="Details" :column="3">
                         <n-descriptions-item v-for="(value, key) in details"
                             :label="key != 'picture' && key != 'id' ? key : null">
