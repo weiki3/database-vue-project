@@ -44,6 +44,7 @@ const useUserStore = defineStore('user', {
             }
             else {
                 alert("User ID or password is wrong!")
+                this.logout()
             }
         },
         keepLogin() {

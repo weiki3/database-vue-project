@@ -74,17 +74,26 @@ const activeKey = ref(null)
 
 <template>
   <n-config-provider :theme="darkTheme">
+
     <n-layout-header>
       <n-split :default-size="5">
         <template #1>
-          <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" responsive icon-size=30 />
+          <div class="flex-center">
+            <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" responsive icon-size=30 />
+          </div>
         </template>
       </n-split>
     </n-layout-header>
-
     <RouterView />
   </n-config-provider>
 </template>
 
 
-<style scoped></style>
+<style scoped>
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+</style>

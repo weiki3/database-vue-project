@@ -2,7 +2,7 @@
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from 'vue';
 import axios from 'axios';
-import { NCard } from 'naive-ui';
+import { NCard, NSpace } from 'naive-ui';
 
 const vehicleList = ref([]);
 const router = useRouter()
@@ -33,15 +33,19 @@ axios.get("/")
     
 <template>
   <div class="photowall" style="position:relative;">
-    <h1>Photo Gallery</h1>
-    <div v-for="vehicle in vehicleList" :key="vehicle.id" class="photo-item" @click="handleDetails(vehicle)">
-      <n-card :title="vehicle.name">
-        <template #cover>
-          <img :src="vehicle.picture" :alt="vehicle.name" class="thumbnail" />
-        </template>
-        {{ vehicle.nation }}
-      </n-card>
-    </div>
+    <h1 class="title">Photo Gallery</h1>
+    <n-space justify="space-around">
+      <div v-for="vehicle in vehicleList" :key="vehicle.id" class="photo-item" @click="handleDetails(vehicle)">
+        <n-card :title="vehicle.name">
+          <template #cover>
+            <img :src="vehicle.picture" :alt="vehicle.name" class="thumbnail" />
+          </template>
+          {{ vehicle.nation }}
+        </n-card>
+      </div>
+
+    </n-space>
+
   </div>
 </template>
 
@@ -97,5 +101,9 @@ axios.get("/")
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.title {
+  padding: 15px;
 }
 </style>
