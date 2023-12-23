@@ -2,6 +2,7 @@
 import { ref, reactive } from 'vue';
 import useUserStore from "../stores/user"
 import axios from 'axios';
+import { NList,NListItem,NRate,NTag } from 'naive-ui';
 
 const props = defineProps(['vid'])
 const comments = ref([]);
@@ -61,13 +62,15 @@ getComments()
 <template>
     <div>
         <div class="display">
-            <ul>
-                <div v-for="(comment, index) in comments" :key="comment.userID">
-                    <p>User ID: {{ comment.userID }}</p>
-                    <p>Point: {{ comment.point }}</p>
-                    <p>Comment: {{ comment.content }}</p>
-                </div>
-            </ul>
+            <n-list  hoverable clickable >
+                <h1 class="hh1">Comment</h1>
+                <n-list-item v-for="(comment, index) in comments">
+                    <n-tag :bordered="false" type="info" size="small">
+                        User ID: {{ comment.userID }}</n-tag><br/>
+                    <n-rate readonly :value="comment.point" />
+                    <p> {{ comment.content }}</p>
+            </n-list-item>
+        </n-list>
         </div>
 
         <div class="submit" v-if="userStore.loginState">
@@ -82,3 +85,10 @@ getComments()
 
     </div>
 </template>
+
+<style scoped>
+.hh1{
+    margin-left: 10%;
+}
+
+</style>

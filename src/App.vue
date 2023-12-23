@@ -4,8 +4,9 @@ import { NButton } from 'naive-ui';
 import { h, ref } from "vue";
 import { NIcon, NMenu, NSplit, NConfigProvider, darkTheme, NLayoutHeader } from "naive-ui";
 import {
-  BookOutline as BookIcon,
-  HomeOutline as HomeIcon
+  AirplaneOutline as BookIcon,
+  HomeOutline as HomeIcon,
+  KeyOutline as key,
 } from "@vicons/ionicons5";
 
 import useUserStore from "./stores/user"
@@ -62,7 +63,7 @@ const menuOptions = ref([
       { default: () => "Login" }
     ),
     key: "go-to-Login",
-    icon: renderIcon(BookIcon)
+    icon: renderIcon(key)
   },
 ])
 
