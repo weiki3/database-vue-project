@@ -1,6 +1,6 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { NButton, NCard, NUpload, NImage } from 'naive-ui';
+import { ref } from 'vue';
+import { NButton, NCard, NUpload, NImage, NDivider } from 'naive-ui';
 import axios from 'axios';
 import useUserStore from "../stores/user"
 
@@ -47,18 +47,17 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="photowall" style="position:relative;">
-        <h1>Photo Wall</h1>
-        <div v-for="photo in photoWall" :key="photo.id" class="photo-item">
-            <n-card>
-                <template #cover>
-                    <n-image :src="photo.address" class="thumbnail"></n-image>
-                </template>
-            </n-card>
-        </div>
-    </div>
     <div class="upload" v-if="userStore.loginState">
-        <h3> Upload your photo </h3>
+        <n-divider> You can upload photos here </n-divider>
         <input type="file" class="file" name="avatar" accept="image/png, image/jpeg" @change="uploadPhoto" />
+        <n-divider></n-divider>
     </div>
+    <div v-else>
+        <n-divider>You can upload photos after login</n-divider>
+    </div>
+        <h1>Photo Wall</h1>
+        <div v-for="photo in photoWall" :key="photo.id" class="photo-item" style="display: inline-block;">
+            <n-image :src="photo.address" class="thumbnail"/>
+        </div>
+    
 </template>

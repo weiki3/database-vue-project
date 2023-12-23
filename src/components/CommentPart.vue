@@ -2,7 +2,7 @@
 import { ref, reactive, onMounted } from 'vue';
 import useUserStore from "../stores/user"
 import axios from 'axios';
-import { NList, NListItem, NRate, NTag } from 'naive-ui';
+import { NButton,NList, NListItem, NRate, NTag,NDivider ,NForm,NFormItemRow} from 'naive-ui';
 
 const props = defineProps(['vid'])
 const comments = ref([]);
@@ -63,26 +63,37 @@ onMounted(() => {
 
 <template>
     <div>
+        <div class="submit" v-if="userStore.loginState">
+            <n-form>
+            <n-form-item-row label="Summit your comment ">
+                <input v-model="myComment.content">
+                </n-form-item-row>
+            <n-form-item-row label=" Give your point ">
+                <n-rate allow-half v-model:value="myComment.point"/>
+            </n-form-item-row>
+            <n-button @click="pushComment()">Summit</n-button>
+        </n-form>
+        <br />
+        </div>
+        <div v-else>
+            <n-divider>
+                You can comment here after login
+            </n-divider>
+
+        </div>
         <div class="display">
             <n-list hoverable clickable>
                 <h1 class="hh1">Comment</h1>
                 <n-list-item v-for="(comment, index) in comments">
                     <n-tag :bordered="false" type="info" size="small">
                         User ID: {{ comment.userID }}</n-tag><br />
-                    <n-rate readonly :value="(comment.point / 2)" allow-half="true" />
+                    <n-rate readonly :value="comment.point" allow-half="true" />
                     <p> {{ comment.content }}</p>
                 </n-list-item>
             </n-list>
         </div>
 
-        <div class="submit" v-if="userStore.loginState">
-            <h3> Summit your comment </h3>
-            <input v-model="myComment.content">
-            <h3> Give your point </h3>
-            <input v-model="myComment.point">
-            <br />
-            <button @click="pushComment()">Summit</button>
-        </div>
+        
 
 
     </div>
