@@ -38,7 +38,7 @@ const menuOptions = ref([
     ),
     key: "go-back-home",
     icon: renderIcon(HomeIcon)
-  },
+  },{},{},
   {
     label: () => h(
       RouterLink,
@@ -51,7 +51,7 @@ const menuOptions = ref([
     ),
     key: "go-to-gallery",
     icon: renderIcon(BookIcon)
-  },
+  },{},{},
   {
     label: () => h(
       RouterLink,
@@ -76,10 +76,11 @@ const activeKey = ref(null)
   <n-config-provider :theme="darkTheme" style="width: 100%;">
     <n-global-style />
     <n-layout-header class="header">
-      <n-split :default-size="5">
+      <n-split :default-size="10">
         <template #1>
           <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" responsive icon-size=30 />
         </template>
+          <div style="place-self: end;"> zhe</div>
       </n-split>
     </n-layout-header>
     <RouterView />
