@@ -1,7 +1,7 @@
 <script setup>
 import CommentPart from '@/components/CommentPart.vue';
 import PhotoWall from '@/components/PhotoWall.vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import {
@@ -10,15 +10,14 @@ import {
 } from 'naive-ui';
 
 const details = ref(null);
-const route = useRoute()
+const route = useRoute();
+const router = useRouter();
+
 
 onMounted(() => {
-    console.log(route.params.vid)
-
     axios.get(`/${route.params.vid}`)
         .then(result => {
             details.value = result.data.data
-            console.log(details.value)
         })
         .catch(err => {
             console.log(err)
@@ -30,7 +29,7 @@ onMounted(() => {
 <template>
     <div v-if="details">
         <n-breadcrumb>
-            <n-breadcrumb-item>
+            <n-breadcrumb-item @click="router.push({ name: 'gallery' })">
                 gallery</n-breadcrumb-item>
             <n-breadcrumb-item>
                 {{ details.name }}</n-breadcrumb-item>
