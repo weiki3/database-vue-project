@@ -43,25 +43,25 @@ const onChange = async () => {
 
 <template>
     <div>
-        <n-card title="Change Password">
+        <h3>Change Password</h3>
+        <br />
+        <n-form-item-row label="Email: ">
+            <input v-model="changeData.email" />
+        </n-form-item-row>
+        <n-form-item-row label="New password: ">
+            <input v-model="changeData.password" type="password" />
+        </n-form-item-row>
 
-            <n-form-item-row label="Email: ">
-                <input v-model="changeData.email" />
-            </n-form-item-row>
-            <n-form-item-row label="New password: ">
-                <input v-model="changeData.password" type="password" />
-            </n-form-item-row>
+        <n-button @click="onChange">Change</n-button>
 
-            <n-button @click="onChange">Change</n-button>
-
-            <div v-if="changeData.userid">
+        <div v-if="changeData.userid">
+            <br />
+            <n-alert title="New Pasword Info" type="info" closable>
                 <h4>Register success!</h4>
                 <h4>User ID: {{ changeData.userid }}</h4>
                 <h4 class="emphasized">User ID is one of the login certificate, please remember!</h4>
-            </div>
-        </n-card>
-
-
+            </n-alert>
+        </div>
     </div>
 </template>
 

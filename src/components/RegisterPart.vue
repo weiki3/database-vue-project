@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from 'vue'
 import axios from 'axios';
-import { NButton, NCard, NTabs, NTabPane, NForm, NFormItemRow } from 'naive-ui';
+import { NButton, NCard, NTabs, NTabPane, NForm, NFormItemRow, NAlert } from 'naive-ui';
 
 const registerData = reactive({
     user_name: '',
@@ -45,25 +45,26 @@ const onRegister = async () => {
 
 <template>
     <div>
-        <n-card title="Register">
-            <n-form-item-row label="Username: ">
-                <input v-model="registerData.user_name" />
-            </n-form-item-row>
-            <n-form-item-row label="Email: ">
-                <input v-model="registerData.email" />
-            </n-form-item-row>
-            <n-form-item-row label="Password: ">
-                <input v-model="registerData.password" type="password" />
-            </n-form-item-row>
-            <n-button @click="onRegister">Register</n-button>
+        <n-form-item-row label="Username: ">
+            <input v-model="registerData.user_name" />
+        </n-form-item-row>
+        <n-form-item-row label="Email: ">
+            <input v-model="registerData.email" />
+        </n-form-item-row>
+        <n-form-item-row label="Password: ">
+            <input v-model="registerData.password" type="password" />
+        </n-form-item-row>
+        <n-button @click="onRegister">Register</n-button>
 
-            <div v-if="registerData.userid">
+        <div v-if="registerData.userid">
+            <br />
+            <n-alert title="Register Info" type="info" closable>
                 <h4>Register success!</h4>
                 <h4>User ID: {{ registerData.userid }}</h4>
                 <h4 class="emphasized">User ID is one of the login certificate, please remember!</h4>
-            </div>
-        </n-card>
+            </n-alert>
 
+        </div>
     </div>
 </template>
 
