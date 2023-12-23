@@ -67,7 +67,7 @@ getComments()
                 <n-list-item v-for="(comment, index) in comments">
                     <n-tag :bordered="false" type="info" size="small">
                         User ID: {{ comment.userID }}</n-tag><br/>
-                    <n-rate readonly :value="comment.point" />
+                    <n-rate readonly :value="(comment.point/2)" allow-half="true" />
                     <p> {{ comment.content }}</p>
             </n-list-item>
         </n-list>
