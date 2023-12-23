@@ -6,7 +6,7 @@ const useUserStore = defineStore('user', {
     persist: {
         key: "UserID",
         storage: sessionStorage,
-        paths: ["password", "loginState", "user_name", "email"],
+        paths: ["password", "loginState", "user_name", "email", "UserID"],
     },
     // 定义状态：一个函数，返回一个对象
     state: () => ({
@@ -46,20 +46,21 @@ const useUserStore = defineStore('user', {
                 alert("User ID or password is wrong!")
             }
         },
-        async keepLogin() {
-            if (this.loginState) {
-                axios.get(`/users/login?UserID=${this.UserID}&password=${this.password}`)
-                    .then(response => {
-                        let { state } = result.data
-                        if (state !== 200) {
-                            this.loginState = false
-                            alert("Login expired, please login again!")
-                        }
-                    }).catch(error => {
-                        this.logout()
-                        alert("Login expired, please login again!")
-                    })
-            }
+        keepLogin() {
+            // 检查cookie 存续 未完成
+            // if (this.loginState) {
+            //     axios.get(`/users/login?UserID=${this.UserID}&password=${this.password}`)
+            //         .then(response => {
+            //             let { state } = result.data
+            //             if (state !== 200) {
+            //                 this.loginState = false
+            //                 alert("Login expired, please login again!")
+            //             }
+            //         }).catch(error => {
+            //             this.logout()
+            //             alert("Login expired, please login again!")
+            //         })
+            // }
 
         },
 

@@ -1,14 +1,18 @@
 <script setup>
 import { ref } from 'vue';
+import { NButton, NCard, NUpload } from 'naive-ui';
 import axios from 'axios';
+import useUserStore from "../stores/user"
 
 const props = defineProps(['vid'])
 const photoWall = ref([]);
+const userStore = useUserStore()
 
 function getPhotoWall() {
-    axios.get(`/${route.params.vid}/photowall`)
+    axios.get(`/${props.vid}/photowall`)
         .then(result => {
             photoWall.value = result.data.data
+            // console.log(photoWall.value[0])
         })
         .catch(err => {
             console.log(err)
@@ -31,5 +35,12 @@ getPhotoWall()
     </div>
     <div class="upload" v-if="userStore.loginState">
         <h3> Upload your photo </h3>
+        <div class="uploadPage">
+            <n-upload action="https://localhost:8080/upload/photo" :method="POST" :data="{
+                'id': props.vid
+            }">
+                <n-button>上传文件</n-button>
+            </n-upload>
+        </div>
     </div>
 </template>

@@ -1,8 +1,8 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { NButton } from 'naive-ui';
-import {h, ref} from "vue";
-import { NIcon,NMenu,NSplit,NConfigProvider,darkTheme,NLayoutHeader } from "naive-ui";
+import { h, ref } from "vue";
+import { NIcon, NMenu, NSplit, NConfigProvider, darkTheme, NLayoutHeader } from "naive-ui";
 import {
   BookOutline as BookIcon,
   HomeOutline as HomeIcon
@@ -15,6 +15,8 @@ const userStore = useUserStore()
 
 if (userStore.loginState) {
   userStore.keepLogin()
+} else {
+  userStore.logout()
 }
 
 
@@ -71,22 +73,16 @@ const activeKey = ref(null)
 
 <template>
   <n-config-provider :theme="darkTheme">
-  <n-layout-header>
+    <n-layout-header>
       <n-split :default-size="5">
-    <template #1>
-      <n-menu
-        v-model:value="activeKey"
-        mode="horizontal"
-        :options="menuOptions"
-        responsive
-        icon-size=50
-      />
-    </template>
-  </n-split>
-  </n-layout-header>
+        <template #1>
+          <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" responsive icon-size=50 />
+        </template>
+      </n-split>
+    </n-layout-header>
 
-  <RouterView />
-</n-config-provider>
+    <RouterView />
+  </n-config-provider>
 </template>
 
 

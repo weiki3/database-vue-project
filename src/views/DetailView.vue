@@ -1,5 +1,6 @@
 <script setup>
 import CommentPart from '@/components/CommentPart.vue';
+import PhotoWall from '@/components/PhotoWall.vue';
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from 'vue';
 import axios from 'axios';
@@ -14,14 +15,6 @@ const selectedVehicle = JSON.parse(route.query.vehicleString)
 axios.get(`/${route.params.vid}`)
     .then(result => {
         details.value = result.data.data
-    })
-    .catch(err => {
-        console.log(err)
-    })
-
-axios.get(`/${route.params.vid}/photowall`)
-    .then(result => {
-        photoWall.value = result.data.data
     })
     .catch(err => {
         console.log(err)
@@ -44,11 +37,7 @@ axios.get(`/${route.params.vid}/photowall`)
             <h2>Comments</h2>
             <CommentPart :vid="selectedVehicle.id" />
             <h2>Photo Wall</h2>
-            <ul>
-                <li v-for="photo in photoWall" :key="photo.id">
-                    {{ photo }}
-                </li>
-            </ul>
+            <PhotoWall :vid="selectedVehicle.id" />
         </div>
 
     </div>
