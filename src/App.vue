@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { NButton } from 'naive-ui';
 import { h, ref } from "vue";
-import { NIcon, NMenu, NSplit, NConfigProvider, darkTheme, NLayoutHeader } from "naive-ui";
+import { NIcon, NMenu, NSplit, NConfigProvider, darkTheme, NLayoutHeader, NGlobalStyle } from "naive-ui";
 import {
   AirplaneOutline as BookIcon,
   HomeOutline as HomeIcon,
@@ -74,6 +74,7 @@ const activeKey = ref(null)
 
 <template>
   <n-config-provider :theme="darkTheme">
+    <n-global-style />
 
     <n-layout-header>
       <n-split :default-size="5">
