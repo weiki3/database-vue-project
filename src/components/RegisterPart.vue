@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from 'vue'
 import axios from 'axios';
-import { NButton, NCard, NTabs, NTabPane, NForm, NFormItemRow } from 'naive-ui';
+import { NButton, NCard, NTabs, NTabPane, NForm, NFormItemRow, NAlert } from 'naive-ui';
 
 const registerData = reactive({
     user_name: '',
