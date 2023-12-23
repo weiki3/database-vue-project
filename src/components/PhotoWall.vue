@@ -48,7 +48,7 @@ getPhotoWall()
         <div v-for="photo in photoWall" :key="photo.id" class="photo-item">
             <n-card>
                 <template #cover>
-                    <n-image :src="photo.address" class="thumbnail" />
+                    <n-image :src="photo.address" class="thumbnail"></n-image>
                 </template>
             </n-card>
         </div>

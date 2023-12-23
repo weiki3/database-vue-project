@@ -38,13 +38,13 @@ axios.get(`/${route.params.vid}`)
                     </n-descriptions-item>
                 </n-descriptions>
             </ul>
-            
+
         </n-grid-item>
         <n-grid-item>
-                <CommentPart :vid="selectedVehicle.id" />
+            <CommentPart :vid="selectedVehicle.id" />
         </n-grid-item>
         <n-grid-item>
-                <PhotoWall :vid="selectedVehicle.id" />
+            <PhotoWall :vid="selectedVehicle.id" />
         </n-grid-item>
     </n-grid>
 </template>
