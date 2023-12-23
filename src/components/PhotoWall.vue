@@ -61,3 +61,10 @@ onMounted(() => {
         </div>
     
 </template>
+
+<style scoped>
+.class-item{
+    margin-left: 0;
+}
+
+</style>
