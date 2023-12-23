@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { NButton, NCard, NUpload, NImage, NDivider } from 'naive-ui';
 import axios from 'axios';
 import useUserStore from "../stores/user"
