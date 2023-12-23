@@ -28,7 +28,7 @@ onMounted(() => {
 
 <template>
     <div v-if="details">
-        <n-breadcrumb>
+        <n-breadcrumb style="margin-top: 2rem;">
             <n-breadcrumb-item @click="router.push({ name: 'gallery' })">
                 gallery</n-breadcrumb-item>
             <n-breadcrumb-item>
@@ -36,7 +36,7 @@ onMounted(() => {
 
         </n-breadcrumb>
         <n-grid cols="4" item-responsive>
-            <n-grid-item span="0 400:1 600:2 800:3">
+            <n-grid-item span="600:2 800:3">
                 <ul style="padding-left: 5rem;padding-right: 5rem;">
                     <n-image width="100%" :src="details.picture" :alt="details.name" />
                     <n-descriptions title="Details" :column="3">
@@ -48,11 +48,11 @@ onMounted(() => {
                         </n-descriptions-item>
                     </n-descriptions>
                 </ul>
-                <ul style="margin-left: 0;margin-right: 0;">
+                <ul style="margin-left: 0;margin-right: 0;display:table-cell;">
                 <PhotoWall :vid="details.id" />
                 </ul>
             </n-grid-item>
-            <n-grid-item>
+            <n-grid-item >
                 <CommentPart :vid="details.id" />
             </n-grid-item>
         </n-grid>

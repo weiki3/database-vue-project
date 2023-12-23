@@ -21,9 +21,9 @@ const router = useRouter()
   </n-carousel>
   <n-card title="about us">
       <h3>This is a Aircraft Gallery Project (Temporarily). To get start, click at the 'gallery' above to get an overview of the aircrafts
-        we are interested in and choose one to get details about it, how other users think about it and more photos about it.
+        we are interested in and choose one to get details,comments and more photos about it.
       </h3>
-      <h3>After you log in the website, comment and uploading photos are allowed. But attention that please obey the law in China
+      <h3>After login, commentting and uploading photos are allowed. But attention that please obey the law in China
          when browsing the website.</h3>  
     </n-card>
         
