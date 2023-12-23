@@ -28,13 +28,13 @@ onMounted(() => {
 
 <template>
     <div v-if="details">
-        <n-breadcrumb>
-            <n-breadcrumb-item @click="router.push({ name: 'gallery' })">
-                gallery</n-breadcrumb-item>
-            <n-breadcrumb-item>
-                {{ details.name }}</n-breadcrumb-item>
-
-        </n-breadcrumb>
+        <div class="breadcrumb"><n-breadcrumb>
+                <n-breadcrumb-item @click="router.push({ name: 'gallery' })">
+                    gallery</n-breadcrumb-item>
+                <n-breadcrumb-item>
+                    {{ details.name }}</n-breadcrumb-item>
+            </n-breadcrumb>
+        </div>
         <n-grid cols="4" item-responsive>
             <n-grid-item span="0 400:1 600:2 800:3">
                 <ul style="padding-left: 5rem;padding-right: 5rem;">
@@ -49,7 +49,7 @@ onMounted(() => {
                     </n-descriptions>
                 </ul>
                 <ul style="margin-left: 0;margin-right: 0;">
-                <PhotoWall :vid="details.id" />
+                    <PhotoWall :vid="details.id" />
                 </ul>
             </n-grid-item>
             <n-grid-item>
@@ -68,6 +68,9 @@ onMounted(() => {
 .comment {
     place-self: "start";
 }
-</style>
 
-出现问题，details在 template调用之前还未获取到，如何使details和模板同步
+.breadcrumb {
+    margin-left: 5%;
+    padding: 1%;
+}
+</style>
