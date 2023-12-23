@@ -4,10 +4,10 @@ import PhotoWall from '@/components/PhotoWall.vue';
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from 'vue';
 import axios from 'axios';
-import { NGrid,NGridItem,NDescriptions,NDescriptionsItem ,NImage} from 'naive-ui';
+import { NGrid, NGridItem, NDescriptions, NDescriptionsItem, NImage } from 'naive-ui';
 
 const details = ref(null);
-const photoWall =ref([])
+const photoWall = ref([])
 const router = useRouter()
 const route = useRoute()
 
@@ -28,33 +28,34 @@ axios.get(`/${route.params.vid}`)
     <n-grid cols="4" item-responsive>
         <n-grid-item span="0 400:1 600:2 800:3">
             <ul>
-                <n-image  width="100%" :src="selectedVehicle.picture" :alt="selectedVehicle.name" />
-                <n-descriptions  title="Details" :column="3">
-                    <n-descriptions-item v-for="(value, key) in details" :label="key!='picture'&&key!='id'?key:null">
-                        <li v-if="key!='picture'&&key!='id'">
-                        {{ value    }}
+                <n-image width="100%" :src="selectedVehicle.picture" :alt="selectedVehicle.name" />
+                <n-descriptions title="Details" :column="3">
+                    <n-descriptions-item v-for="(value, key) in details"
+                        :label="key != 'picture' && key != 'id' ? key : null">
+                        <li v-if="key != 'picture' && key != 'id'">
+                            {{ value }}
                         </li>
-                </n-descriptions-item>
+                    </n-descriptions-item>
                 </n-descriptions>
             </ul>
-            <PhotoWall :vid="selectedVehicle.id" />
+            
         </n-grid-item>
-    <n-grid-item>
-      <div >
-            <CommentPart :vid="selectedVehicle.id" />
-            </div>
-    </n-grid-item>
-  </n-grid>
-    
+        <n-grid-item>
+                <CommentPart :vid="selectedVehicle.id" />
+        </n-grid-item>
+        <n-grid-item>
+                <PhotoWall :vid="selectedVehicle.id" />
+        </n-grid-item>
+    </n-grid>
 </template>
 
 <style scoped>
-.parrel{
+.parrel {
     place-items: flex-wrap;
 }
 
 
-.comment{
-    place-self:"start";
+.comment {
+    place-self: "start";
 }
 </style>

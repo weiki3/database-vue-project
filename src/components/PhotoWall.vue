@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { NButton, NCard, NUpload } from 'naive-ui';
+import { NButton, NCard, NUpload, NImage } from 'naive-ui';
 import axios from 'axios';
 import useUserStore from "../stores/user"
 
@@ -24,7 +24,7 @@ function uploadPhoto(e) {
     let param = new FormData(); //创建form对象
     param.append('File', file);//通过append向form对象添加数据
     param.append('id', props.vid)
-    console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
+    // console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
     let config = {
         headers: { 'Content-Type': 'multipart/form-data' } //这里是重点，需要和后台沟通好请求头，Content-Type不一定是这个值
     }; //添加请求头
@@ -38,6 +38,8 @@ function uploadPhoto(e) {
         })
 }
 
+getPhotoWall()
+
 </script>
 
 <template>
@@ -46,7 +48,7 @@ function uploadPhoto(e) {
         <div v-for="photo in photoWall" :key="photo.id" class="photo-item">
             <n-card>
                 <template #cover>
-                    <img :src="photo.address" class="thumbnail" />
+                    <n-image :src="photo.address" class="thumbnail" />
                 </template>
             </n-card>
         </div>
