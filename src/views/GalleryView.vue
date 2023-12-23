@@ -1,5 +1,5 @@
 <script setup>
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { NCard, NSpace } from 'naive-ui';

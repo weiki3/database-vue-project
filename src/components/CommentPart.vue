@@ -2,7 +2,7 @@
 import { ref, reactive, onMounted } from 'vue';
 import useUserStore from "../stores/user"
 import axios from 'axios';
-import { NButton,NList, NListItem, NRate, NTag,NDivider ,NForm,NFormItemRow} from 'naive-ui';
+import { NButton, NList, NListItem, NRate, NTag, NDivider, NForm, NFormItemRow } from 'naive-ui';
 
 const props = defineProps(['vid'])
 const comments = ref([]);
@@ -65,15 +65,15 @@ onMounted(() => {
     <div>
         <div class="submit" v-if="userStore.loginState">
             <n-form>
-            <n-form-item-row label="Summit your comment ">
-                <input v-model="myComment.content">
+                <n-form-item-row label="Summit your comment ">
+                    <input v-model="myComment.content">
                 </n-form-item-row>
-            <n-form-item-row label=" Give your point ">
-                <n-rate allow-half v-model:value="myComment.point"/>
-            </n-form-item-row>
-            <n-button @click="pushComment()">Summit</n-button>
-        </n-form>
-        <br />
+                <n-form-item-row label=" Give your point ">
+                    <n-rate allow-half v-model:value="myComment.point" />
+                </n-form-item-row>
+                <n-button @click="pushComment()">Summit</n-button>
+            </n-form>
+            <br />
         </div>
         <div v-else>
             <n-divider>
@@ -92,10 +92,6 @@ onMounted(() => {
                 </n-list-item>
             </n-list>
         </div>
-
-        
-
-
     </div>
 </template>
 

@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from 'vue'
 import useUserStore from "../stores/user"
-import { NButton, NCard, NTabs, NTabPane, NForm, NFormItemRow, NTag } from 'naive-ui';
+import { NButton, NForm, NFormItemRow } from 'naive-ui';
 
 const userData = reactive({
     UserID: '',
@@ -31,12 +31,8 @@ const changePassword() {
 <template>
     <div>
         <template v-if="userStore.loginState">
-            <h3>
-                User ID:
-            </h3>
-            <p>
-                {{ userStore.UserID }}
-            </p>
+            <h3 class="userid">User ID: {{ userStore.UserID }}</h3>
+            <br />
             <n-button text-color="white" @click="onLogout">Exit</n-button>
         </template>
         <template v-else>
@@ -57,5 +53,13 @@ const changePassword() {
     margin-right: auto;
     margin-top: 10%;
     margin-left: auto;
+}
+
+.userid {
+    font-size: large;
+    border-bottom: 1px solid #dbdbdb;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
 }
 </style>

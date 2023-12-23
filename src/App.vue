@@ -1,6 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import { NButton } from 'naive-ui';
 import { h, ref } from "vue";
 import { NIcon, NMenu, NSplit, NConfigProvider, darkTheme, NLayoutHeader, NGlobalStyle } from "naive-ui";
 import {

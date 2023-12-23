@@ -2,7 +2,7 @@
 import { reactive } from 'vue'
 import axios from 'axios';
 
-import { NButton, NCard, NTabs, NTabPane, NForm, NFormItemRow } from 'naive-ui';
+import { NButton, NFormItemRow } from 'naive-ui';
 
 const changeData = reactive({
     email: '',

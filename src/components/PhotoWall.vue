@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { NButton, NCard, NUpload, NImage, NDivider } from 'naive-ui';
+import { NImage, NDivider } from 'naive-ui';
 import axios from 'axios';
 import useUserStore from "../stores/user"
 
@@ -55,16 +55,14 @@ onMounted(() => {
     <div v-else>
         <n-divider>You can upload photos after login</n-divider>
     </div>
-        <h1>Photo Wall</h1>
-        <div v-for="photo in photoWall" :key="photo.id" class="photo-item" style="display: inline-block;">
-            <n-image :src="photo.address" class="thumbnail"/>
-        </div>
-    
+    <h1>Photo Wall</h1>
+    <div v-for="photo in photoWall" :key="photo.id" class="photo-item" style="display: inline-block;">
+        <n-image :src="photo.address" class="thumbnail" />
+    </div>
 </template>
 
 <style scoped>
-.class-item{
+.class-item {
     margin-left: 0;
 }
-
 </style>
