@@ -73,14 +73,11 @@ const activeKey = ref(null)
 </script>
 
 <template>
-  <n-config-provider :theme="darkTheme">
-
-    <n-layout-header>
+  <n-config-provider :theme="darkTheme" style="width: 100%;">
+    <n-layout-header class="header">
       <n-split :default-size="5">
         <template #1>
-          <div class="flex-center">
-            <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" responsive icon-size=30 />
-          </div>
+          <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" responsive icon-size=30 />
         </template>
       </n-split>
     </n-layout-header>
