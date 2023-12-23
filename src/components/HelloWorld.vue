@@ -11,22 +11,10 @@ defineProps({
 
 <template>
   <n-carousel show-arrow>
-    <img
-      class="carousel-img"
-      src="https://cmano-db.com/images/DB3000/aircraft_280.jpg"
-    >
-    <img
-      class="carousel-img"
-      src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
-    >
-    <img
-      class="carousel-img"
-      src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
-    >
-    <img
-      class="carousel-img"
-      src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
-    >
+    <img class="carousel-img" src="https://cmano-db.com/images/DB3000/aircraft_280.jpg">
+    <img class="carousel-img" src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg">
+    <img class="carousel-img" src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg">
+    <img class="carousel-img" src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg">
   </n-carousel>
   <div class="greetings">
     <h1>about us</h1>
@@ -49,9 +37,10 @@ h3 {
   font-size: 1.2rem;
 }
 
-.greetings h1{
+.greetings h1 {
   text-align: center;
 }
+
 .greetings h3 {
   text-align: center;
 }

@@ -4,8 +4,10 @@ import PhotoWall from '@/components/PhotoWall.vue';
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from 'vue';
 import axios from 'axios';
-import {NGrid,NGridItem,NDescriptions,
-    NDescriptionsItem ,NImage,NBreadcrumb,NBreadcrumbItem} from 'naive-ui';
+import {
+    NGrid, NGridItem, NDescriptions,
+    NDescriptionsItem, NImage, NBreadcrumb, NBreadcrumbItem
+} from 'naive-ui';
 
 const details = ref(null);
 const photoWall = ref([])
@@ -27,12 +29,12 @@ axios.get(`/${route.params.vid}`)
 <template>
     <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" /> -->
     <n-breadcrumb>
-    <n-breadcrumb-item>
-       gallery</n-breadcrumb-item>
-    <n-breadcrumb-item>
-      {{details.name}}</n-breadcrumb-item>
-    
-  </n-breadcrumb>
+        <n-breadcrumb-item>
+            gallery</n-breadcrumb-item>
+        <n-breadcrumb-item>
+            {{ selectedVehicle.name }}</n-breadcrumb-item>
+
+    </n-breadcrumb>
     <n-grid cols="4" item-responsive>
         <n-grid-item span="0 400:1 600:2 800:3">
             <ul>
