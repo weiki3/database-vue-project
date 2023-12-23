@@ -49,9 +49,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.n-card {
-  max-width: 300px;
-}
 
 .photowall {
   width: 100%;
@@ -73,36 +70,8 @@ onMounted(() => {
   object-fit: cover;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+.title {
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.title {
-  padding: 15px;
 }
 </style>
