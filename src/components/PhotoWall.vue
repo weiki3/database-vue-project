@@ -28,7 +28,7 @@ function uploadPhoto(e) {
     let config = {
         headers: { 'Content-Type': 'multipart/form-data' } //这里是重点，需要和后台沟通好请求头，Content-Type不一定是这个值
     }; //添加请求头
-    axios.post('https://localhost:8080/upload/photo', param, config)
+    axios.post('/upload/photo', param, config)
         .then(response => {
             if (response.data.state !== 200) {
                 alert("Failed to upload!")
