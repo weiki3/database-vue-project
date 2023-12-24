@@ -46,13 +46,17 @@ function pushComment() {
         point: myComment.point
     })
         .then(response => {
+            if (response.data.state !== 200) {
+                alert("Failed to summit comment!")
+            }
             flushMyComment()
+            location.reload()
         })
         .catch(error => {
             console.log(error)
             alert("Failed to summit comment!")
         })
-    location.reload()
+
 }
 
 onMounted(() => {
