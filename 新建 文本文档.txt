@@ -1,7 +1,0 @@
-  <n-breadcrumb>
-    <n-breadcrumb-item>
-       gallery</n-breadcrumb-item>
-    <n-breadcrumb-item>
-      {{details.name}}</n-breadcrumb-item>
-    
-  </n-breadcrumb>

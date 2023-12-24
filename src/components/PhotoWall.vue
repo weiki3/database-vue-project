@@ -29,17 +29,23 @@ function uploadPhoto(e) {
         headers: { 'Content-Type': 'multipart/form-data' } //这里是重点，需要和后台沟通好请求头，Content-Type不一定是这个值
     }; //添加请求头
     axios.post('/upload/photo', param, config)
-        .then(response => {
-            // 在不同的浏览器可能会触发 fail，待解决
+    // .then(response => {
+    //     // 在不同的浏览器可能会触发 fail，待解决
+    //     if (response.data.state !== 200) {
+    //         // alert("Failed to upload!")
+    //         // console.log(response)
 
-            // console.log(response.data)
-            if (response.data.state !== 200) {
-                // alert("Failed to upload!")
-            }
-        }).catch(() => {
-            // alert("Failed to upload!")
-        })
-    //location.reload()
+    //     }
+    // }).catch(response => {
+    //     // alert("Failed to upload!")
+    //     // console.log(response)
+
+    // }).finally(response => {
+    //     // console.log(response)
+    // }
+
+    // )
+    location.reload()
 }
 
 onMounted(() => {
