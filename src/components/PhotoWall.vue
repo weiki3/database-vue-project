@@ -31,21 +31,16 @@ function uploadPhoto(e) {
     axios.post('/upload/photo', param, config)
         .then(response => {
             // 在不同的浏览器可能会触发 fail，待解决
+            // console.log(response)
             if (response.data.state !== 200) {
                 alert("Check upload result!")
-                console.log(response)
-
             }
+            // console.log(response)
+            location.reload()
         }).catch((error) => {
             alert("Check upload result!")
             console.log(error)
-
-        }).finally(() => {
-            // console.log(response)
-        }
-
-        )
-    location.reload()
+        })
 }
 
 onMounted(() => {
