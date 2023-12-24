@@ -49,10 +49,10 @@ onMounted(() => {
                     </n-descriptions>
                 </ul>
                 <ul style="margin-left: 0;margin-right: 0;display:table-cell;">
-                <PhotoWall :vid="details.id" />
+                    <PhotoWall :vid="details.id" />
                 </ul>
             </n-grid-item>
-            <n-grid-item >
+            <n-grid-item>
                 <CommentPart :vid="details.id" />
             </n-grid-item>
         </n-grid>

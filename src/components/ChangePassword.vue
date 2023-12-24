@@ -2,7 +2,7 @@
 import { reactive } from 'vue'
 import axios from 'axios';
 
-import { NButton, NFormItemRow } from 'naive-ui';
+import { NButton, NFormItemRow, NAlert } from 'naive-ui';
 
 const changeData = reactive({
     email: '',
@@ -57,7 +57,7 @@ const onChange = async () => {
         <div v-if="changeData.userid">
             <br />
             <n-alert title="New Pasword Info" type="info" closable>
-                <h4>Register success!</h4>
+                <h4>Change password success!</h4>
                 <h4>User ID: {{ changeData.userid }}</h4>
                 <h4 class="emphasized">User ID is one of the login certificate, please remember!</h4>
             </n-alert>

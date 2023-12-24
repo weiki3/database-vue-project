@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from 'vue'
 import axios from 'axios';
-import { NButton, NTabs, NTabPane, NForm, NFormItemRow } from 'naive-ui';
+import { NButton, NTabs, NTabPane, NForm, NFormItemRow, NAlert } from 'naive-ui';
 
 const registerData = reactive({
     user_name: '',
@@ -63,9 +63,12 @@ const onRegister = async () => {
             </n-tab-pane>
         </n-tabs>
         <div v-if="registerData.userid">
-            <h4>Register success!</h4>
-            <h4>User ID: {{ registerData.userid }}</h4>
-            <h4 class="emphasized">User ID is one of the login certificate, please remember!</h4>
+            <br />
+            <n-alert title="Register Info" type="info" closable>
+                <h4>Register success!</h4>
+                <h4>User ID: {{ registerData.userid }}</h4>
+                <h4 class="emphasized">User ID is one of the login certificate, please remember!</h4>
+            </n-alert>
         </div>
     </div>
 </template>
