@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { NImage, NDivider } from 'naive-ui';
+import { NImage, NDivider, NSpace } from 'naive-ui';
 import axios from 'axios';
 import useUserStore from "../stores/user"
 
@@ -30,14 +30,16 @@ function uploadPhoto(e) {
     }; //添加请求头
     axios.post('/upload/photo', param, config)
         .then(response => {
+            // 在不同的浏览器可能会触发 fail，待解决
+
             // console.log(response.data)
             if (response.data.state !== 200) {
-                alert("Failed to upload!")
+                // alert("Failed to upload!")
             }
         }).catch(() => {
-            alert("Failed to upload!")
+            // alert("Failed to upload!")
         })
-    location.reload()
+    //location.reload()
 }
 
 onMounted(() => {
@@ -57,9 +59,11 @@ onMounted(() => {
         <n-divider>You can upload photos after login</n-divider>
     </div>
     <h1>Photo Wall</h1>
-    <div v-for="photo in photoWall" :key="photo.id" class="photo-item" style="display: inline-block;">
-        <n-image :src="photo.address" class="thumbnail" />
-    </div>
+    <n-space vertical>
+        <div v-for="photo in photoWall" :key="photo.id" class="photo-item" style="display: inline-block;">
+            <n-image :src="photo.address" class="thumbnail" />
+        </div>
+    </n-space>
 </template>
 
 <style scoped>
