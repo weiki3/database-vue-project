@@ -9,7 +9,7 @@ import axios from 'axios'
 
 
 // 配置 axios baseurl 和 credentials
-axios.defaults.baseURL = 'https://8.134.198.180:8080'
+axios.defaults.baseURL = 'https://cold-front.top:8080'
 axios.defaults.withCredentials = true
 
 
