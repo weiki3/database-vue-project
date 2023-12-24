@@ -45,7 +45,7 @@ function uploadPhoto(e) {
         }
 
         )
-    // location.reload()
+    location.reload()
 }
 
 onMounted(() => {
