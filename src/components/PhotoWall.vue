@@ -30,14 +30,14 @@ function uploadPhoto(e) {
     }; //添加请求头
     axios.post('/upload/photo', param, config)
         .then(response => {
-            console.log(response.data)
+            // console.log(response.data)
             if (response.data.state !== 200) {
                 alert("Failed to upload!")
             }
         }).catch(() => {
             alert("Failed to upload!")
         })
-    // location.reload()
+    location.reload()
 }
 
 onMounted(() => {
