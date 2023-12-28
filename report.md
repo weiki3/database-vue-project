@@ -45,7 +45,107 @@ https://www.cold-front.top
 
 ### 2.1 前端开发
 
+#### 前端设计
 
+前端使用 Vue + Vue-router + Axios + Pinia + Naive-UI 完成
+
+Vue 是一款用于构建用户界面的 JavaScript 框架，它基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型，能够高效开发用户见面。
+
+网站以深灰色、绿色为主色调设计，UI 设计使用 Naive-UI 的组件库完成，主要分为四个页面板块：首页、画廊页、登录页和详情页
+
+![interface](/images/interact.drawio.png)
+
+#### 项目结构
+
+```
+project
+|-index.html     # 入口 html
+|-package.json   # nodejs 配置文件
+|-vite.config.js # vite 配置代码
+|-dist           # 网站部署文件
+|-src
+    |-assets     # 存放 css 样式文件
+    |-components # 存放 vue 单文件组件
+    |-router     # vue-router 使用到的路由模块
+    |-stores     # pinia 使用到的存储模块
+    |-views      # 存放 view vue 组件
+    |-App.vue    # vue 的根组件
+    |-main.js    # 入口 javascript 代码
+```
+
+#### 前端入口
+
+- `index.html` 作为网页的入口，加载 main.js 
+- `main.js` 主函数位置，加载 vue 跟组件和各个 js 模块  
+```js
+import './assets/main.css'
+import { createApp } from 'vue'
+import pinia from './stores'
+import App from './App.vue'
+import router from './router'
+import axios from 'axios'
+
+// 配置 axios baseurl 和 credentials
+axios.defaults.baseURL = 'https://cold-front.top:8080'
+axios.defaults.withCredentials = true
+
+const app = createApp(App)
+app.use(pinia)
+app.use(router)
+app.mount('#app')
+```
+- `App.vue` Vue 的根组件，各个 vue 的模块在这里加载
+
+#### Vue 组件
+
+网站的四个页面对应了 4 个 view 组件，分别为 `DetailView.vue`, `GalleryView.vue`, `HomeView.vue`, `LoginView.vue`，具体代码请看仓库
+
+- `HomeView.vue`
+
+网站首页，加载 `HelloWorld.vue` 组件，提供网页的基础信息
+
+- `GalleryView.vue`
+
+载具展示廊页，展示网站所有的载具基础信息，针对每个载具可以跳转到载具详情页
+
+- `LoginView.vue`
+
+登录页，集成网站登录、注册、密码修改功能，分别对应 `LoginPart.vue`, `RegisterPart.vue`, `ChangePassword.vue` 组件
+
+登录后，浏览器会获得从服务端发来的 cookie，用于详情页的上传评论、图片功能的身份认证
+
+- `DetailView.vue`
+
+载具详情页，提供载具的详细信息，并且加载了 `CommentPart.vue` 和 `PhotoWall.vue`，提供评论和照片墙的功能，上传评论和图片需要验证登录
+
+#### 与后端的交互
+
+与后端的交互使用 axios 完成，axios 是一个基于 promise 网络请求库，作用于 node.js 和浏览器中。 它是 isomorphic 的(即同一套代码可以运行在浏览器和node.js中)，在服务端它使用原生 node.js http 模块。
+
+```js
+onMounted(() => {
+  axios.get("/")
+    .then(result => {
+      vehicleList.value = result.data.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
+```
+
+这是 axios 在 gallery 页的一个使用案例，`onMounted` 函数用于 vue 组件在加载时自动调用，axios 调用 `get` 方法（输入 url），返回的结果在 `then` 方法中处理
+
+> 因为 axios get 是异步调用的，所以对返回结果的处理一定要放在 then 中，才能够实现同步
+
+#### 其他模块
+
+- Vue-Router  
+Vue 的路由组件，提供页面之间的切换（也就是 view vue 的切换）功能
+- Pinia  
+Vue 的存储组件，在本次项目中用于存储用户登录信息，以及登录登出的方法
+- Naive-UI  
+Vue 的组件库，可以导入成熟的组件来设计页面
 
 ### 2.2 后端开发
 后端使用JAVA21+springboot框架写成，详情如下：
@@ -115,7 +215,7 @@ project
 
 其E-R图如下
 
-![E-R](E-R.png)
+![E-R](images/E-R.png)
 
 下面列出每个表的详细信息
 
@@ -221,4 +321,41 @@ name = [i.strip() for i in tree.xpath("//div[@class='row']/div/table/tbody/tr/td
 
 ## 4 效果展示
 
+- 主页
+
+在浏览器地址栏输入 `www.cold-front.top` 后，会自动跳转到项目主页
+
+![home](images/home.png)
+
+主页包含了一些项目信息，载具轮播图等，页面上方的导航栏用于跳转到其他页面
+
+- 登录页
+
+点击导航栏的 Login，会跳转到登录页
+
+![login](images/login.png)
+
+点击登陆标签中的 Register，可以注册一个账号
+
+![register](images/register.png)
+
+注册后会返回一个 UserID 用于登录
+
+如果忘记密码，可以在 Login 标签页中点击下面的忘记密码来更改密码
+
+- 展示廊页
+
+点击导航栏的 Gallery，会跳转到展示廊页，提供载具的简略信息
+
+![gallery](images/gallery.png)
+
+点击其中的载具信息会跳转到详情页
+
+- 详情页
+
+![details](images/details.png)
+
+该页面展示了载具的详细信息，以及用户评论和用户上传的照片，在登录的情况下用户能够上传评论和图片
+
 ## 5 总结感想
+
